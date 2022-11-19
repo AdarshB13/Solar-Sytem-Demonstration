@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     void FixedUpdate() {
         rotate();
         move();
+        exit();
     }
 
     void rotate() {
@@ -25,6 +26,12 @@ public class CameraController : MonoBehaviour
         float zinput=Input.GetAxis("Vertical");
         Vector3 dest=new Vector3(xinput,0,zinput).normalized;
         //Debug.Log(dest+transform.position);  
-        transform.Translate(dest);
+        transform.Translate(dest*speed);
+    }
+
+    void exit() {
+        if(Input.GetKey(KeyCode.Escape)) {
+            Application.Quit();
+        }
     }
 }
